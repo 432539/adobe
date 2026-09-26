@@ -1,0 +1,59 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "firefly-gen-backend"
+version = "0.1.0"
+description = "Multi-tenant image and video generation relay"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  "asyncpg>=0.29,<1",
+  "boto3>=1.35,<2",
+  "cryptography>=43,<47",
+  "curl-cffi>=0.15,<1",
+  "email-validator>=2.2,<3",
+  "fastapi>=0.115,<1",
+  "orjson>=3.10,<4",
+  "pydantic-settings>=2.6,<3",
+  "pyjwt>=2.9,<3",
+  "python-multipart>=0.0.18,<1",
+  "redis>=5.2,<6",
+  "sqlalchemy[asyncio]>=2.0.36,<3",
+  "uvicorn[standard]>=0.32,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "aiosqlite>=0.20,<1",
+  "httpx>=0.27,<1",
+  "mypy>=1.13,<2",
+  "pytest>=8.3,<9",
+  "pytest-asyncio>=0.24,<1",
+  "ruff>=0.8,<1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+plugins = ["pydantic.mypy"]
+packages = ["app"]
+
+[[tool.mypy.overrides]]
+module = ["boto3", "boto3.*", "botocore", "botocore.*"]
+ignore_missing_imports = true
