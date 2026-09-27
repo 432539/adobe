@@ -6,7 +6,7 @@
 
 ## 怎么开通
 
-1. **给公开仓库点 Star**（`432539/adobe`）。`scripts/star_grant.py` 每约 10 分钟扫一次，自动邀请进私有仓（默认 `pull`）。  
+1. **给公开仓库点 Star**（`432539/adobe`）。`scripts/star_grant.py` 每约 10 分钟扫一次，自动邀请进私有仓（个人仓只能给写权限）。  
 2. 或加 QQ 群 **19302577**，报 GitHub 用户名，由群主手动邀请。  
 3. 到 GitHub 通知 / 邮箱接受 Collaborator 邀请。  
 4. 拉取：

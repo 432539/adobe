@@ -1,7 +1,8 @@
 """Watch public repo stars and invite new stargazers to the private full-source repo.
 
 Anyone who stars 432539/adobe is treated as authorized and invited to
-432539/ad-xiaoguai (default permission: pull).
+432539/ad-xiaoguai. Personal private repos only allow write collaborators,
+so the default permission is push.
 
   set STAR_GRANT_TOKEN=<github pat with repo admin on ad-xiaoguai>
   python scripts/star_grant.py --once
@@ -25,7 +26,7 @@ from pathlib import Path
 
 PUBLIC_REPO = os.environ.get("STAR_GRANT_PUBLIC", "432539/adobe")
 PRIVATE_REPO = os.environ.get("STAR_GRANT_PRIVATE", "432539/ad-xiaoguai")
-PERMISSION = os.environ.get("STAR_GRANT_PERMISSION", "pull")
+PERMISSION = os.environ.get("STAR_GRANT_PERMISSION", "push")
 API = "https://api.github.com"
 STATE_PATH = Path(os.environ.get("STAR_GRANT_STATE", "secrets/star-grant-state.json"))
 
@@ -117,7 +118,8 @@ def already_on_private() -> set[str]:
 def grant_once() -> int:
     stargazers = paginate(f"/repos/{PUBLIC_REPO}/stargazers")
     stars = [row["login"] for row in stargazers if isinstance(row.get("login"), str)]
-    skip = already_on_private() | load_state()
+    owner = PRIVATE_REPO.split("/", 1)[0].lower()
+    skip = already_on_private() | load_state() | {owner}
     invited = load_state()
     granted = 0
     print(f"公开仓库 Star {len(stars)} 人，私有仓已有/待接受 {len(skip)} 人")
@@ -130,6 +132,13 @@ def grant_once() -> int:
             f"/repos/{PRIVATE_REPO}/collaborators/{login}",
             {"permission": PERMISSION},
         )
+        # User-owned private repos reject pull/read; retry as push.
+        if status == 422 and "permission of read" in str(payload):
+            status, payload = request(
+                "PUT",
+                f"/repos/{PRIVATE_REPO}/collaborators/{login}",
+                {"permission": "push"},
+            )
         if status in {201, 204}:
             invited.add(key)
             skip.add(key)

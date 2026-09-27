@@ -18,6 +18,6 @@ jobs:
           STAR_GRANT_TOKEN: ${{ secrets.STAR_GRANT_TOKEN }}
           STAR_GRANT_PUBLIC: 432539/adobe
           STAR_GRANT_PRIVATE: 432539/ad-xiaoguai
-          STAR_GRANT_PERMISSION: pull
+          STAR_GRANT_PERMISSION: push
           STAR_GRANT_STATE: ${{ runner.temp }}/star-grant-state.json
         run: python scripts/star_grant.py --once
