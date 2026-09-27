@@ -115,6 +115,14 @@ def already_on_private() -> set[str]:
     return names
 
 
+def _invite(login: str, permission: str) -> tuple[int, object]:
+    return request(
+        "PUT",
+        f"/repos/{PRIVATE_REPO}/collaborators/{login}",
+        {"permission": permission},
+    )
+
+
 def grant_once() -> int:
     stargazers = paginate(f"/repos/{PUBLIC_REPO}/stargazers")
     stars = [row["login"] for row in stargazers if isinstance(row.get("login"), str)]
@@ -127,18 +135,14 @@ def grant_once() -> int:
         key = login.lower()
         if key in skip:
             continue
-        status, payload = request(
-            "PUT",
-            f"/repos/{PRIVATE_REPO}/collaborators/{login}",
-            {"permission": PERMISSION},
-        )
+        status, payload = _invite(login, PERMISSION)
         # User-owned private repos reject pull/read; retry as push.
         if status == 422 and "permission of read" in str(payload):
-            status, payload = request(
-                "PUT",
-                f"/repos/{PRIVATE_REPO}/collaborators/{login}",
-                {"permission": "push"},
-            )
+            status, payload = _invite(login, "push")
+        if status == 422 and "rate_limit" in str(payload):
+            print("  邀请额度用尽，60s 后再试")
+            time.sleep(60)
+            status, payload = _invite(login, "push")
         if status in {201, 204}:
             invited.add(key)
             skip.add(key)
