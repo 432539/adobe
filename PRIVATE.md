@@ -1,22 +1,24 @@
-# 非开源部分（须授权领取）
+# 完整源码（须授权拉取）
 
-公开仓库与 `git clone` **不含**下列完整实现，历史记录亦不保留。
+公开仓库 `432539/adobe` **不含**完整实现。
 
-**领取方式：加入 QQ 群 19302577，经授权后由群主发放。** 未授权不得拉取、拷贝或二次分发完整源码。
+完整版在私有仓库：**https://github.com/432539/ad-xiaoguai**（未授权打开是 404）。
 
-## 整目录不公开
-- `frontend/`（React 面板，只留占位 README）
-- `harvester/`（ARP 铸票采集器，只留占位 README）
+## 怎么拉完整版
 
-## 出图与身份
-- AD 移动端 / 网页换票与提交
-- 上游请求体、额度、引用图、链路追踪
-- 生成 worker、号池、ARP 池存取
-- Cookie 安全装载
+1. 加入 QQ 群 **19302577**，向群主报 GitHub 用户名  
+2. 群主在私有仓库 Settings → Collaborators 邀请你  
+3. 邮箱/GitHub 通知里接受邀请  
+4. 拉取：
 
-## 实现文档
-- `docs/02-arp-core.md`
-- `docs/12-minting-and-config.md`
-- `docs/13-models.md`
+```bash
+git clone https://github.com/432539/ad-xiaoguai.git
+```
 
-对应单测一并授权发放，避免从测试还原实现。
+未授权不得拉取、拷贝或二次分发。
+
+## 公开仓库没有的部分
+- `frontend/` 整目录
+- `harvester/` 整目录
+- AD 出图 / 换票 / 请求体 / worker / 号池 / ARP 存取
+- `docs/02-arp-core.md`、`docs/12-minting-and-config.md`、`docs/13-models.md`
