@@ -9,19 +9,10 @@
 - `harvester/`（ARP 铸票采集器，只留占位 README）
 
 ## 出图与身份
-- `backend/app/adobe/ff_ios.py`
-- `backend/app/adobe/client.py`
-- `backend/app/adobe/auth.py`
-- `backend/app/adobe/payloads.py`
-- `backend/app/adobe/http.py`
-- `backend/app/adobe/credits.py`
-- `backend/app/adobe/refs.py`
-- `backend/app/adobe/trace.py`
-- `backend/app/adobe/smoke.py`
-- `backend/app/services/generation/worker.py`
-- `backend/app/services/accounts.py`
-- `backend/app/arp/store.py`
-- `backend/app/accounts/cookie_loader.py`
+- AD 移动端 / 网页换票与提交
+- 上游请求体、额度、引用图、链路追踪
+- 生成 worker、号池、ARP 池存取
+- Cookie 安全装载
 
 ## 实现文档
 - `docs/02-arp-core.md`

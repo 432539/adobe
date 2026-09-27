@@ -14,7 +14,7 @@
         API KEY 调用 ───► │  api/(用户+管理员)  admin-api/(内网)            │
                          │  ├─ auth / 计费 / 配置 / 日志                    │
                          │  ├─ 生成入口：入队 job                          │
-                         │  └─ ARP 池 (Redis)  ◄── admin-api/adobe/arp     │
+                         │  └─ ARP 池 (Redis)  ◄── admin-api/ad/arp     │
                          └───────┬───────────────────────────▲────────────┘
                                  │ enqueue                    │ push ARP
                         ┌────────▼─────────┐         ┌────────┴───────────┐
@@ -32,7 +32,7 @@
 1. 用户在创作中心提交 prompt / 模型 / 尺寸 → 后端校验余额、幂等键 → 写 `generation_job(queued)` → 入队。
 2. Worker 取 job → `checkout` 一个空闲 HARD 账号（Redis 租约）。
 3. **按模型选身份**（`identity_lane`）：
-   - **默认 FF-iOS**（香蕉 / Image 2 / 视频）：现换移动端 AT，住宅代理提交，**不** checkout ARP。
+   - **默认 AD 移动端**（香蕉 / Image 2 / 视频）：现换移动端 AT，住宅代理提交，**不** checkout ARP。
    - **仅 2.5**：Cookie 现换网页 clio AT + checkout ARP bundle，提交出口和 UA/CH 必须与铸票一致。
 4. curl_cffi 打 `generate-async`，轮询后直连 CDN 下载。
 5. 结果分支：
@@ -55,9 +55,9 @@ backend/app/
 ├── models/            # SQLAlchemy ORM
 ├── schemas/           # Pydantic DTO
 ├── api/               # 面板路由：auth, user/*, admin/*
-├── admin_api/         # 内网口：adobe/arp（采集器）
+├── admin_api/         # 内网口：ad/arp（采集器）
 ├── services/          # 业务：billing, users, keys, config, stats, logs, generation
 ├── arp/               # ARP 池：store(redis), checkout/invalidate, health
-├── adobe/             # 提交链路：client(curl_cffi), payloads, auth(cookie→token), arp_session
+├── ad/                # 提交链路：client(curl_cffi), payloads, auth(cookie→token), arp_session
 └── workers/           # Celery tasks：generate_image, generate_video
 ```

@@ -145,11 +145,11 @@
 ## 5. 内网 admin-api（采集器 → ARP 池）
 | 方法 | 路径 | 说明 |
 |---|---|---|
-| GET | `/admin-api/adobe/harvester/bootstrap` | 铸票参数 + `proxy_ready`。License 字段保留兼容（开源 fingerprint-chromium 忽略）。采集器每轮拉取，`version` 变化即热加载；同时写 Redis 心跳（面板「采集器在线」）。**不返回代理密码。** |
-| POST | `/admin-api/adobe/harvester/lease` | 按配置中心模板 `build_session` 发一枚全新 sticky SID：`{sid,egress_id,proxy_url,proxy_masked,sticky_minutes}`。采集器必须把 `proxy_url` 原样用于铸票并原样入池。 |
-| POST | `/admin-api/adobe/arp` | body `{tokens:[{t,ua,ch,proxy_url,egress_id}...]}`；TTL / max_uses 取自配置中心（不是 env） |
-| GET | `/admin-api/adobe/arp` | 池健康：`{present,ready,oldest_age_sec,egress}` |
-| POST | `/admin-api/adobe/arp/invalidate` | `{id}` 作废（408 后）|
+| GET | `/admin-api/ad/harvester/bootstrap` | 铸票参数 + `proxy_ready`。License 字段保留兼容（开源 fingerprint-chromium 忽略）。采集器每轮拉取，`version` 变化即热加载；同时写 Redis 心跳（面板「采集器在线」）。**不返回代理密码。** |
+| POST | `/admin-api/ad/harvester/lease` | 按配置中心模板 `build_session` 发一枚全新 sticky SID：`{sid,egress_id,proxy_url,proxy_masked,sticky_minutes}`。采集器必须把 `proxy_url` 原样用于铸票并原样入池。 |
+| POST | `/admin-api/ad/arp` | body `{tokens:[{t,ua,ch,proxy_url,egress_id}...]}`；TTL / max_uses 取自配置中心（不是 env） |
+| GET | `/admin-api/ad/arp` | 池健康：`{present,ready,oldest_age_sec,egress}` |
+| POST | `/admin-api/ad/arp/invalidate` | `{id}` 作废（408 后）|
 
 - 鉴权 `X-Internal-Token=ARP_INTERNAL_TOKEN` + IP 白名单，**绝不暴露公网**。
 - 水位：`ready >= arp_pool_target` 时采集器停铸；`ready < arp_min_ready` 时跳过铸完后的空闲等待。提交 round-robin 取票。

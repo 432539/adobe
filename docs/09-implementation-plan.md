@@ -12,7 +12,7 @@
 ## 1. 里程碑 A：最小闭环（单进程调试）
 
 ### A1. ARP 采集器
-- 从现有 `adobe-arp-harvester` 迁移核心逻辑，但改为本项目接口。
+- 从现有 `ad-arp-harvester` 迁移核心逻辑，但改为本项目接口。
 - [fingerprint-chromium](https://github.com/adryfish/fingerprint-chromium) 148，随机 seed，住宅 sticky 代理。Playwright 只驱动该二进制。
 - `SherlockSdk.initAsync()` 取得 `sid/ark/bfp/ftr`，抓 UA/高熵 CH，校验后发布完整 bundle。
 - 采集器仅调用 HTTP admin-api，不连接 PostgreSQL/Redis。
@@ -20,7 +20,7 @@
 ### A2. ARP 池
 - Redis Hash 存 bundle，ZSET 按 `expires_at` 管 ready 队列。
 - 原子 Lua 实现 `publish / checkout / increment_use / invalidate / cleanup`。
-- `/admin-api/adobe/arp/health` 返回 ready、即将过期数、铸票速率、按 egress 分布。
+- `/admin-api/ad/arp/health` 返回 ready、即将过期数、铸票速率、按 egress 分布。
 
 ### A3. Cookie → clio token
 - 读取测试 Cookie，调用 IMS `/ims/check/v6/token`。
@@ -47,7 +47,7 @@
 - Gemini adapter：`generateContent`、`predict`、`predictLongRunning`、operations。
 - 两个 adapter 只做请求/响应映射；共同调用 `GenerationService`，禁止复制业务逻辑。
 - 同步接口也先持久化任务并入队；API 进程通过 Redis 事件等待。超时返回 504 + task_id，任务继续。
-- 图片编辑：multipart/inlineData → 安全校验 → 上传 Adobe blob → 按模型映射 reference usage。
+- 图片编辑：multipart/inlineData → 安全校验 → 上传 AD blob → 按模型映射 reference usage。
 
 ## 3. 里程碑 C：多用户与高并发
 
@@ -68,7 +68,7 @@
 ## 5. 测试策略
 
 - 单元：ARP bundle 校验、payload builder、错误映射、计费状态机、协议 adapter。
-- 集成：真实 Redis/PostgreSQL；Mock Adobe 覆盖 200/401/403/408/429/451/5xx。
+- 集成：真实 Redis/PostgreSQL；Mock 上游 覆盖 200/401/403/408/429/451/5xx。
 - 受控真实测试：只用本机 Cookie 文件和住宅出口，测试结果单独标记，CI 不运行。
 - 压测：异步入口、同步长连接、任务查询、日志写入分别压；记录 P50/P95/P99 和资源占用。
 - E2E：登录 → 创作 → 进度 → 下载 → 余额流水；管理员查看日志/池健康。

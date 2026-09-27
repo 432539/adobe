@@ -18,4 +18,4 @@ python -m venv .venv
 .\.venv\Scripts\python -m mypy app
 ```
 
-目录规划见 [`../docs/01-architecture.md`](../docs/01-architecture.md)。默认出图是 FF-iOS（`app/adobe/ff_ios.py`），仅 2.5 走网页 ARP。
+目录规划见 [`../docs/01-architecture.md`](../docs/01-architecture.md)。默认出图是 AD 移动端，仅 2.5 走网页 ARP。

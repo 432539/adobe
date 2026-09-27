@@ -124,7 +124,7 @@
 
 ### 顺序
 1. 图片编辑与 Image 5。
-2. Firefly Video。
+2. AD 视频。
 3. Veo/Luma/Sora。
 4. Seedance（clio/scope/媒体引用路径单独验收）。
 5. 每个模型建立能力矩阵、价格、payload fixture 和契约测试。
@@ -149,7 +149,7 @@
 3. `feat/cookie-loader`：安全读取与脱敏测试。
 4. `feat/arp-domain`：bundle schema、校验、Redis store/Lua、admin-api。
 5. `feat/harvester`：Chrome 148 真铸票与 health。
-6. `feat/adobe-image-spike`：token、submit、poll、download，仅 gpt-image-2。
+6. `feat/ad-image-spike`：token、submit、poll、download，仅 gpt-image-2。
 
 ## 当前下一步
 

@@ -75,7 +75,7 @@ submit ──hold(−cost)──▶ queued ──▶ running ──▶ succeeded
 | email | 账号标识（展示脱敏） |
 | cookie_enc | **加密存储** Cookie Header，绝不明文。Access Token 每次请求用 Cookie 现换，不入库 |
 | plan_cap | enum(`HARD`,`FREE`)，只用 HARD 出图 |
-| group | 历史字段，调度不再使用。身份按模型分流（2.5 网页 / 其它 FF-iOS） |
+| group | 历史字段，调度不再使用。身份按模型分流（2.5 网页 / 其它 AD 移动端） |
 | credits_remaining / credits_total | 额度快照 |
 | status | enum(`active`,`parked`,`ratelimited`,`dead`) |
 | parked_until | timestamptz（408 后临时冷却） |

@@ -14,7 +14,7 @@
 - [x] 安全读取本机测试 Cookie（4 行）→ clio token；全链路日志脱敏。
 - [x] `gpt-image-2` 首次真实闭环：curl_cffi + Chrome 148 UA/CH、同出口提交/轮询、CDN 直连下载。
 - [ ] Cookie/token 入库加密与账号池 token 缓存。
-- [ ] 通用 `adobe` 客户端：重试/账号调度/MinIO 内容寻址缓存。
+- [ ] 通用 `ad` 客户端：重试/账号调度/MinIO 内容寻址缓存。
 - [x] 五家图片 `generate-async` 请求体（nano / gpt-image-2 / gpt-image-2.5 flare+prism）。目录真源 [13-models](./13-models.md)。
 - [ ] 图生图：把 `reference_blob_ids` 写入 `referenceBlobs`（须本环境 HAR）。
 - [ ] 六家视频 `generate-async` 请求体（gemini-omni / seedance / veo）。未核实前不编字段。

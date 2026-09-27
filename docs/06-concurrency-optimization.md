@@ -47,7 +47,7 @@
 
 ## 9. 住宅代理流量优化（ARP 质量优先）
 
-- **必须代理**：Firefly 页面、Sherlock/Arkose/Forter、`generate-async` 提交；出口必须与 ARP bundle 一致。
+- **必须代理**：上游页面、Sherlock/Arkose/Forter、`generate-async` 提交；出口必须与 ARP bundle 一致。
 - **代理流量很小，可先保留**：IMS token 交换和任务轮询 JSON，避免在链路未验证前改变身份路径。
 - **必须直连**：生成结果 presigned CDN 下载、MinIO/S3 上传、缩略图处理。图片/视频大流量不得穿住宅代理。
 - 结果转存对象存储后，用户下载只访问平台 CDN；按内容 hash 去重，重复访问不再请求上游。
