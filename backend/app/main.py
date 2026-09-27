@@ -116,7 +116,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             await app.state.resources.close()
 
     app = FastAPI(
-        title="aigc-hub",
+        title="AD小怪兽",
         version="0.1.0",
         description=SUPPORT_QQ_LABEL,
         lifespan=lifespan,
