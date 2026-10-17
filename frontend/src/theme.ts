@@ -1,0 +1,72 @@
+import type { ThemeConfig } from "antd";
+
+/** 参考控制台风格：靛蓝主色、浅灰画布、8px 卡片圆角、按钮无阴影 */
+export const lightTheme: ThemeConfig = {
+  cssVar: true,
+  hashed: false,
+  token: {
+    colorPrimary: "#2f54eb",
+    colorInfo: "#2f54eb",
+    colorLink: "#2f54eb",
+    colorSuccess: "#16a34a",
+    colorWarning: "#f59e0b",
+    colorError: "#ef4444",
+    colorBgLayout: "#f5f7fb",
+    colorBgContainer: "#ffffff",
+    colorBorder: "#c9d0dc",
+    colorBorderSecondary: "#d9dee8",
+    colorText: "#111827",
+    colorTextSecondary: "#4b5563",
+    colorTextTertiary: "#6b7280",
+    borderRadius: 6,
+    borderRadiusLG: 8,
+    borderRadiusSM: 4,
+    borderRadiusXS: 4,
+    controlHeight: 34,
+    controlHeightSM: 26,
+    controlHeightLG: 40,
+    fontFamily:
+      "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif",
+    fontSize: 13,
+    fontWeightStrong: 400,
+    fontSizeHeading1: 24,
+    fontSizeHeading2: 20,
+    fontSizeHeading3: 18,
+    fontSizeHeading4: 16,
+    fontSizeHeading5: 14,
+    boxShadowTertiary: "0 1px 2px rgba(16,24,40,.04)",
+  },
+  components: {
+    Layout: { headerBg: "#ffffff", siderBg: "#0d1b4c", bodyBg: "#f5f7fb" },
+    Card: { paddingLG: 20, headerFontSize: 14, headerHeight: 56, headerHeightSM: 44 },
+    Table: { headerBg: "#f7f9fc", headerColor: "#6b7280", rowHoverBg: "#f7f9fc", cellPaddingBlock: 12, cellFontSize: 13, headerBorderRadius: 6 },
+    Button: { primaryShadow: "none", defaultShadow: "none", dangerShadow: "none", fontWeight: 400 },
+    Typography: { fontWeightStrong: 400, titleMarginBottom: 0, titleMarginTop: 0 },
+    Tag: { borderRadiusSM: 999, fontSizeSM: 12 },
+    Modal: { titleFontSize: 15 },
+    Result: { titleFontSize: 16, subtitleFontSize: 13, iconFontSize: 48 },
+    Pagination: { itemSize: 32 },
+    Tabs: { inkBarColor: "#2f54eb", itemSelectedColor: "#2f54eb", horizontalItemPadding: "8px 0", horizontalItemGutter: 16, titleFontSize: 13 },
+    Progress: { defaultColor: "#2f54eb" },
+  },
+};
+
+export const darkTheme: ThemeConfig = {
+  ...lightTheme,
+  token: {
+    ...lightTheme.token,
+    colorBgLayout: "#0b1220",
+    colorBgContainer: "#111a2c",
+    colorBgElevated: "#152038",
+    colorBorder: "rgba(255,255,255,.14)",
+    colorBorderSecondary: "rgba(255,255,255,.08)",
+    colorText: "rgba(255,255,255,.88)",
+    colorTextSecondary: "rgba(255,255,255,.6)",
+    colorTextTertiary: "rgba(255,255,255,.4)",
+  },
+  components: {
+    ...lightTheme.components,
+    Layout: { headerBg: "#111a2c", siderBg: "#0b1220", bodyBg: "#0b1220" },
+    Table: { headerBg: "#152038", headerColor: "rgba(255,255,255,.6)", rowHoverBg: "#1a2744", cellPaddingBlock: 12, cellFontSize: 13, headerBorderRadius: 6 },
+  },
+};

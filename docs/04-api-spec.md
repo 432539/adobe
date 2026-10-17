@@ -1,6 +1,6 @@
 # 04 · API 规范
 
-技术支持 QQ 群：**19302577**。
+开源地址：https://github.com/432539/adobe。技术支持 QQ 群：**1109037692**。
 
 三类接口：**面板 API**（`/api`，JWT）、**对外生成 API**（`/v1`,`/v1beta`，KEY）、**内网 admin-api**（采集器，内网 token）。成功直接返回业务体；错误统一 `{code:"<snake_case>", message, detail?}` + 对应 HTTP 状态码。
 

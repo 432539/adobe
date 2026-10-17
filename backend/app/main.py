@@ -25,7 +25,7 @@ from app.core.resources import Resources, create_resources
 from app.models import Base
 from app.services import accounts as account_pool
 from app.services import users as users_service
-from app.core.support import SUPPORT_QQ_LABEL
+from app.core.support import OSS_REPO_URL, SUPPORT_QQ_LABEL
 from app.services.generation.worker import timeout_watchdog_loop, worker_loop
 
 logger = logging.getLogger(__name__)
@@ -118,7 +118,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app = FastAPI(
         title="AD小怪兽",
         version="0.1.0",
-        description=SUPPORT_QQ_LABEL,
+        description=f"{SUPPORT_QQ_LABEL} · 开源 {OSS_REPO_URL}",
         lifespan=lifespan,
     )
     install_error_handlers(app)

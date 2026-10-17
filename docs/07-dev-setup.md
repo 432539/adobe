@@ -2,7 +2,8 @@
 
 运营参数（代理、TTL、铸票间隔、计费）在**系统配置面板**，不在 `.env`。见 [12-minting-and-config](./12-minting-and-config.md)。
 
-**技术支持 QQ 群：19302577**
+**开源地址：https://github.com/432539/adobe**  
+**技术支持 QQ 群：1109037692**
 
 ## 依赖
 - Python 3.11+、Node 18+（pnpm）、PostgreSQL 15+、Redis 7+。
@@ -36,7 +37,13 @@ celery -A app.workers.celery_app worker -l info -c 32
 
 ## 前端 / 采集器
 
-`frontend/` 与 `harvester/` **不在公开仓库**。加入 QQ 群 **19302577** 经授权领取完整源码后再按包内说明启动。
+```bash
+cd frontend
+pnpm install
+pnpm dev    # http://localhost:5173/ ，代理到 API :18000
+```
+
+采集器实现按去过敏策略不在公开仓库。问题进 QQ 群 **1109037692**。
 
 ## 冒烟校验（对齐 [02 §10](./02-arp-core.md)）
 1. 铸出可解码 `sid+ark+bfp+ftr`。

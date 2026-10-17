@@ -1,6 +1,7 @@
 # backend
 
-**技术支持 QQ 群：19302577**
+**开源地址：https://github.com/432539/adobe**  
+**技术支持 QQ 群：1109037692**
 
 FastAPI 后端。当前 Sprint 0 已提供：
 

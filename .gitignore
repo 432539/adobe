@@ -12,9 +12,7 @@ venv/
 .mypy_cache/
 .ruff_cache/
 
-# Full frontend / harvester stay local; public repo only has stub READMEs
-/frontend/*
-!/frontend/README.md
+# Harvester stays local (去过敏)；前端面板公开
 /harvester/*
 !/harvester/README.md
 
